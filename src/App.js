@@ -22,11 +22,11 @@ export default class App extends Component {
         }
     }
 
-    addContact = (contact) => {
-        this.setState((prevState) => ({
-            contacts: [contact, ...prevState.contacts],
-        }))
-    }
+    // addContact = (contact) => {
+    //     this.setState((prevState) => ({
+    //         contacts: [contact, ...prevState.contacts],
+    //     }))
+    // }
     componentDidUpdate(prevProps, prevState) {
         if (this.state.contacts !== prevState.contacts) {
             localStorage.setItem(
@@ -68,7 +68,7 @@ export default class App extends Component {
                 </CSSTransition>
 
                 <ContactForm
-                    addContact={this.addContact}
+                    // addContact={this.addContact}
                     contacts={this.state.contacts}
                 />
 
@@ -83,16 +83,16 @@ export default class App extends Component {
                         filter={this.contactFilter}
                     />
                 </CSSTransition>
-                <CSSTransition
+                {/* <CSSTransition
                     in={this.state.contacts.length > 0}
                     timeout={250}
                     unmountOnExit
-                >
-                    <ContactList
-                        contacts={filteredElements}
-                        deleteContact={this.deleteContact}
-                    />
-                </CSSTransition>
+                > */}
+                <ContactList
+                // contacts={filteredElements}
+                // deleteContact={this.deleteContact}
+                />
+                {/* </CSSTransition> */}
             </div>
         )
     }
