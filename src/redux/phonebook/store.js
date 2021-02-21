@@ -1,8 +1,4 @@
-import {
-    configureStore,
-    getDefaultMiddleware,
-    // combineReducers,
-} from '@reduxjs/toolkit'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import phoneBookReducer from '../phonebook/phonebook-reducers'
 import {
     persistStore,

@@ -35,7 +35,6 @@ const ContactList = ({
                             onClick={() => {
                                 deleteContact(contact.id)
                                 if (contacts.length == 2) {
-                                    // console.log(contacts.length)
                                     resetFilter()
                                 }
                             }}
