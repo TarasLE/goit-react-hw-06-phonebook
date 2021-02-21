@@ -15,5 +15,3 @@ ReactDOM.render(
     </Provider>,
     document.querySelector('#root')
 )
-// console.log(store)
-// console.log(store.getState())

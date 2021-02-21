@@ -50,7 +50,6 @@ const ContactList = ({
     </div>
 )
 
-// console.log(Filter)
 ContactList.propTypes = {
     filteredContacts: PropTypes.array.isRequired,
     deleteContact: PropTypes.func.isRequired,
@@ -75,11 +74,9 @@ const mapStateToProps = ({ contacts: { filter, items } }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    // console.log();
     deleteContact: (id) => {
         dispatch(phonebookAction.deleteContact(id))
     },
-    // filter: '',
     resetFilter: () => {
         dispatch(phonebookAction.changeFilter(''))
     },

@@ -46,7 +46,6 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
     contacts: state.contacts.items,
-    // filter: state.contacts.filter,
 })
 
 export default connect(mapStateToProps, null)(App)

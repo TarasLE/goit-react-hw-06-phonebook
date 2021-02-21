@@ -21,10 +21,6 @@ const persistConfig = {
     key: 'myRoot',
     storage,
 }
-// const rootReducer = combineReducers({
-//     contacts: persistReducer(persistConfig, phoneBookReducer),
-// })
-// const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const phonebookPersistConfig = {
     key: 'contacts',
@@ -43,7 +39,6 @@ const store = configureStore({
     reducer: {
         contacts: persistReducer(phonebookPersistConfig, phoneBookReducer),
     },
-    // reducer: phoneBookReducer,
     middleware,
     devTools: process.env.NODE_ENV === 'development',
 })
