@@ -1,9 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import phonebookAction from '../../redux/phonebook/phonebook-actions'
 import PropTypes from 'prop-types'
 import { CSSTransition } from 'react-transition-group'
 import styles from './Filter.module.css'
 
-export default function Filter({ contacts, value, filter }) {
+function Filter({ contacts, value, filter }) {
     return (
         <CSSTransition
             in={contacts.length > 1}
@@ -38,3 +40,22 @@ Filter.propTypes = {
     value: PropTypes.string.isRequired,
     filter: PropTypes.func.isRequired,
 }
+
+const resetFilter = (state) => {
+    if (state.length == 2) {
+        return ''
+    } else {
+        return state.contacts.filter
+    }
+}
+
+const mapStateToProps = (state) => ({
+    contacts: state.contacts.items,
+    value: state.contacts.filter,
+})
+const mapDispatchToProps = (dispatch) => ({
+    filter: (event) =>
+        dispatch(phonebookAction.changeFilter(event.currentTarget.value)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter)

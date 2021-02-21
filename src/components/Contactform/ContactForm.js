@@ -120,9 +120,11 @@ class ContactForm extends Component {
         )
     }
 }
-
+const mapStateToProps = (state) => ({
+    contacts: state.contacts.items,
+})
 const mapDispatchToProps = (dispatch) => ({
     addContact: (contact) => dispatch(phonebookAction.addContact(contact)),
 })
 
-export default connect(null, mapDispatchToProps)(ContactForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm)
