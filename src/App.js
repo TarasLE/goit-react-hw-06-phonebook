@@ -8,52 +8,7 @@ import styles from './App.module.css'
 import './App.css'
 
 class App extends Component {
-    state = {
-        // contacts: [],
-        // filter: '',
-    }
-    // deleteContact = (contactId) => {
-    //     this.setState((prevState) => ({
-    //         contacts: prevState.contacts.filter(
-    //             (contact) => contact.id != contactId
-    //         ),
-    //     }))
-    //     if (this.state.contacts.length == 2) {
-    //         this.setState({ filter: '' })
-    //     }
-    // }
-
-    // addContact = (contact) => {
-    //     this.setState((prevState) => ({
-    //         contacts: [contact, ...prevState.contacts],
-    //     }))
-    // }
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (this.state.contacts !== prevState.contacts) {
-    //         localStorage.setItem(
-    //             'contacts',
-    //             JSON.stringify(this.state.contacts)
-    //         )
-    //     }
-    // }
-
-    // componentDidMount() {
-    //     const localContacts = localStorage.getItem('contacts')
-    //     const parsedLocalContacts = JSON.parse(localContacts)
-    //     if (parsedLocalContacts) {
-    //         this.setState({ contacts: parsedLocalContacts })
-    //     }
-    // }
-
-    // contactFilter = (event) => {
-    //     this.setState({ filter: event.currentTarget.value })
-    // }
-
     render() {
-        // const normalizedFilter = this.state.filter.toLowerCase()
-        // const filteredElements = this.props.contacts.filter((contact) =>
-        //     contact.name.toLowerCase().includes(normalizedFilter)
-        // )
         return (
             <div className={styles.Container}>
                 <CSSTransition
@@ -68,31 +23,21 @@ class App extends Component {
                     <h1>Phonebook</h1>
                 </CSSTransition>
 
-                <ContactForm
-                // addContact={this.addContact}
-                // contacts={this.props.contacts}
-                />
+                <ContactForm />
 
                 <CSSTransition
                     in={this.props.contacts.length >= 1}
                     timeout={0}
                     unmountOnExit
                 >
-                    <Filter
-                    // contacts={this.props.contacts}
-                    // value={this.state.filter}
-                    // filter={this.contactFilter}
-                    />
+                    <Filter />
                 </CSSTransition>
                 <CSSTransition
                     in={this.props.contacts.length > 0}
                     timeout={250}
                     unmountOnExit
                 >
-                    <ContactList
-                    // contacts={filteredElements}
-                    // deleteContact={this.deleteContact}
-                    />
+                    <ContactList />
                 </CSSTransition>
             </div>
         )

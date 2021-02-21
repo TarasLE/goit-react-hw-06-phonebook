@@ -7,7 +7,6 @@ import styles from './ContactList.module.css'
 import './ContactList.css'
 
 const ContactList = ({ contacts, deleteContact }) => (
-    // return (
     <div className={styles.Container}>
         <TransitionGroup component="ul" classnames={styles.ListContainer}>
             {contacts.map((contact) => (
@@ -37,7 +36,6 @@ const ContactList = ({ contacts, deleteContact }) => (
             ))}
         </TransitionGroup>
     </div>
-    // )
 )
 
 ContactList.propTypes = {
@@ -57,42 +55,17 @@ const testfilter = (filter) => {
     return filter
 }
 
-// const mapStateToProps = (state) => {
-//     const { filter, items } = state.contacts
-//     const filteredElements = filteredElements(filter, items)
-
-//     return {
-//         contacts: filteredElements,
-//     }
-// }
-
 const mapStateToProps = ({ contacts: { filter, items } }) => ({
     contacts: filteredElements(filter, items),
-    filter: filter,
-    // filter: testfilter(filter),
 })
 
 const mapDispatchToProps = (dispatch) => ({
     deleteContact: (id) => {
-        // console.log('test', this.props.filter)
         dispatch(phonebookAction.deleteContact(id))
-        // console.log(this.props.contacts)
-        // if (this.props.contacts.items.length == 2) {
-        //     this.props.contacts.filter = ''
-        // }
     },
     filter: () => {
-        console.log('test', this.props.filter)
+        dispatch(phonebookAction.changeFilter(''))
     },
-    // if(contacts) {
-    //     console.log('test')
-    // },
-    // contacts: () => {
-    //     console.log(contacts)
-    // },
 })
 
-// if (this.props.contacts) {
-// console.log(mapStateToProps())
-// }
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList)
