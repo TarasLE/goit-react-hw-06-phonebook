@@ -9,7 +9,6 @@ import './ContactForm.css'
 import Notification from '../Notification/Notification'
 
 class ContactForm extends Component {
-    static defaultProps = { addContact: '' }
     static propTypes = {}
 
     state = {

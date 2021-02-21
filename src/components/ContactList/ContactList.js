@@ -51,7 +51,9 @@ const ContactList = ({
 
 ContactList.propTypes = {
     filteredContacts: PropTypes.array.isRequired,
+    contacts: PropTypes.array.isRequired,
     deleteContact: PropTypes.func.isRequired,
+    resetFilter: PropTypes.func.isRequired,
 }
 
 const filteredElements = (filter, contacts) => {
@@ -59,11 +61,6 @@ const filteredElements = (filter, contacts) => {
     return contacts.filter((contact) =>
         contact.name.toLowerCase().includes(normalizedFilter)
     )
-}
-
-const testfilter = (filter) => {
-    console.log(filter)
-    return filter
 }
 
 const mapStateToProps = ({ contacts: { filter, items } }) => ({
