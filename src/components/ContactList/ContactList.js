@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import Filter from '../Filter/Filter'
 import phonebookAction from '../../redux/phonebook/phonebook-actions'
 import PropTypes from 'prop-types'
 import styles from './ContactList.module.css'
 import './ContactList.css'
 
-const ContactList = ({ contacts, deleteContact }) => (
+const ContactList = ({
+    filteredContacts,
+    deleteContact,
+    resetFilter,
+    contacts,
+}) => (
     <div className={styles.Container}>
         <TransitionGroup component="ul" classnames={styles.ListContainer}>
-            {contacts.map((contact) => (
+            {filteredContacts.map((contact) => (
                 <CSSTransition
                     timeout={250}
                     classNames={{
@@ -26,7 +32,13 @@ const ContactList = ({ contacts, deleteContact }) => (
                         </span>
                         <button
                             type="button"
-                            onClick={() => deleteContact(contact.id)}
+                            onClick={() => {
+                                deleteContact(contact.id)
+                                if (contacts.length == 2) {
+                                    // console.log(contacts.length)
+                                    resetFilter()
+                                }
+                            }}
                             className={styles.DeleteBtn}
                         >
                             Delete
@@ -38,8 +50,9 @@ const ContactList = ({ contacts, deleteContact }) => (
     </div>
 )
 
+// console.log(Filter)
 ContactList.propTypes = {
-    contacts: PropTypes.array.isRequired,
+    filteredContacts: PropTypes.array.isRequired,
     deleteContact: PropTypes.func.isRequired,
 }
 
@@ -56,14 +69,18 @@ const testfilter = (filter) => {
 }
 
 const mapStateToProps = ({ contacts: { filter, items } }) => ({
-    contacts: filteredElements(filter, items),
+    filteredContacts: filteredElements(filter, items),
+    resetFilter: filter,
+    contacts: items,
 })
 
 const mapDispatchToProps = (dispatch) => ({
+    // console.log();
     deleteContact: (id) => {
         dispatch(phonebookAction.deleteContact(id))
     },
-    filter: () => {
+    // filter: '',
+    resetFilter: () => {
         dispatch(phonebookAction.changeFilter(''))
     },
 })
